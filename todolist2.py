@@ -48,11 +48,11 @@ def opentaskfile():
         file=open('tasklist.txt', 'w')
         file.close() 
 
-#icon 
+# --------------------------------- icon --------------------------------- 
 Image_icon=PhotoImage(file="image/task.png")
 root.iconphoto(False,Image_icon)
 
-#header
+# --------------------------------- header ---------------------------------
 img = ImageTk.PhotoImage(Image.open("image/header.png"))
 Label(root,image=img).pack()
 
@@ -65,7 +65,7 @@ Label(root,image=noteImage,bg="#19191A").place(x=340,y=25)
 heading=Label(root,text="List of Tasks", font="arial 20 bold",fg="white", bg="#19191A") 
 heading.place(x=110,y=20)
 
-#main
+# --------------------------------- main ---------------------------------
 frame=Frame(root,width=400,height=50, bg="white")
 frame.place(x=0,y=130)
 
@@ -77,14 +77,14 @@ task_entry.focus()
 button=Button(frame,text="ADD",font="arial 20 bold", width=6, bg="#080808", fg="#fff",bd=0, command=addTask)
 button.place(x=300,y=0)
 
-#listbox
+# --------------------------------- listbox ---------------------------------
 frame1=Frame(root,bd=3,width=700,height=380,bg="#19191A")
 frame1.pack (pady=(80,0))
 
 listbox= Listbox(frame1, font=('arial', 12),width=40,height=20,bg="#1c1d1f", fg="white", cursor="hand2",selectbackground="#40444b")
 listbox.pack(side=LEFT, fill=BOTH, padx=2)
 
-#scrollbar
+# --------------------------------- scrollbar ---------------------------------
 scrollbar=Scrollbar(frame1)
 scrollbar.pack(side=RIGHT, fill=BOTH)
 
@@ -94,7 +94,7 @@ scrollbar.config(command=listbox.yview)
 
 opentaskfile()
 
-#deleteicon
+# --------------------------------- deleteicon ---------------------------------
 delete_icon = ImageTk.PhotoImage(Image.open("image/delete.png"))
 Button(root, image=delete_icon, bd=0, command=deleteTask).pack(side=BOTTOM,pady=13,)
 
