@@ -1,4 +1,5 @@
 import tkinter as tk
+from tkinter import *
 from tkinter import messagebox, simpledialog
 import sqlite3
 
@@ -37,24 +38,27 @@ def add_contact():
 
     add_window = tk.Toplevel(root)
     add_window.title("Add Contact")
+    add_window.geometry("350x200")
+    add_window.configure(bg="#09094B")
 
-    tk.Label(add_window, text="Store Name:").grid(row=0, column=0)
-    entry_store = tk.Entry(add_window)
+
+    tk.Label(add_window, text="Store Name:", bg="#F0E8DD").grid(row=0, column=0, pady=3)
+    entry_store = tk.Entry(add_window,bg="#F0E8DD")
     entry_store.grid(row=0, column=1)
 
-    tk.Label(add_window, text="Phone:").grid(row=1, column=0)
-    entry_phone = tk.Entry(add_window)
+    tk.Label(add_window, text="Phone:", bg="#F0E8DD").grid(row=1, column=0, pady=3)
+    entry_phone = tk.Entry(add_window, bg="#F0E8DD")
     entry_phone.grid(row=1, column=1)
 
-    tk.Label(add_window, text="Email:").grid(row=2, column=0)
-    entry_email = tk.Entry(add_window)
+    tk.Label(add_window, text="Email:", bg="#F0E8DD").grid(row=2, column=0, pady=3)
+    entry_email = tk.Entry(add_window, bg="#F0E8DD")
     entry_email.grid(row=2, column=1)
 
-    tk.Label(add_window, text="Address:").grid(row=3, column=0)
-    entry_address = tk.Text(add_window, height=4, width=30)
+    tk.Label(add_window, text="Address:", bg="#F0E8DD").grid(row=3, column=0, pady=3)
+    entry_address = tk.Text(add_window, height=4, width=30, bg="#F0E8DD")
     entry_address.grid(row=3, column=1)
 
-    tk.Button(add_window, text="Save", command=save).grid(row=4, column=0, columnspan=2, pady=10)
+    tk.Button(add_window, text="Save", command=save, bg="#F0E8DD").grid(row=4, column=0, columnspan=2, pady=10)
 
 
 
@@ -101,56 +105,70 @@ def update_contact():
 
     edit_window = tk.Toplevel(root)
     edit_window.title("Update Contact")
+    edit_window.configure(bg="#09094B")
 
-    tk.Label(edit_window, text="Store Name:").grid(row=0, column=0)
-    entry_store = tk.Entry(edit_window)
+    tk.Label(edit_window, text="Store Name:", bg="#F0E8DD").grid(row=0, column=0, pady=3)
+    entry_store = tk.Entry(edit_window, bg="#F0E8DD")
     entry_store.insert(0, row[1])
     entry_store.grid(row=0, column=1)
 
-    tk.Label(edit_window, text="Phone:").grid(row=1, column=0)
-    entry_phone = tk.Entry(edit_window)
+    tk.Label(edit_window, text="Phone:", bg="#F0E8DD").grid(row=1, column=0, pady=3)
+    entry_phone = tk.Entry(edit_window, bg="#F0E8DD")
     entry_phone.insert(0, row[2])
     entry_phone.grid(row=1, column=1)
 
-    tk.Label(edit_window, text="Email:").grid(row=2, column=0)
-    entry_email = tk.Entry(edit_window)
+    tk.Label(edit_window, text="Email:", bg="#F0E8DD").grid(row=2, column=0, pady=3)
+    entry_email = tk.Entry(edit_window, bg="#F0E8DD")
     entry_email.insert(0, row[3])
     entry_email.grid(row=2, column=1)
 
-    tk.Label(edit_window, text="Address:").grid(row=3, column=0)
-    entry_address = tk.Text(edit_window, height=4, width=30)
+    tk.Label(edit_window, text="Address:", bg="#F0E8DD").grid(row=3, column=0, pady=3)
+    entry_address = tk.Text(edit_window, height=4, width=30, bg="#F0E8DD")
     entry_address.insert(tk.END, row[4])
     entry_address.grid(row=3, column=1)
 
-    tk.Button(edit_window, text="Save Changes", command=save).grid(row=4, column=0, columnspan=2, pady=10)
+    tk.Button(edit_window, text="Save Changes", command=save, bg="#F0E8DD").grid(row=4, column=0, columnspan=2, pady=10)
 
 # ----------------- GUI SETUP -----------------
 root = tk.Tk()
-root.title("Contact Manager")
+root.title("Contact Book")
 root.geometry("500x400")
+root.resizable(False,False)
+root.configure(bg="#01012B")
 
-contact_list = tk.Listbox(root, width=60)
+contact_list = tk.Listbox(root, width=60, height=15, bg="#F0E8DD")
 contact_list.pack(pady=10)
 
-btn_frame = tk.Frame(root)
-btn_frame.pack(pady=10)
+container = tk.Frame(root, bg="#01012B", width=30, height=40)
+container.pack()
 
-btn_add = tk.Button(btn_frame, text="Add Contact", command=add_contact)
-btn_add.grid(row=0, column=0, padx=5)
+btn_frame1 = tk.Frame(container, bg="#01012B") 
+btn_frame1.pack(side="right", padx=5)
 
-btn_view = tk.Button(btn_frame, text="View Contacts", command=view_contacts)
-btn_view.grid(row=0, column=1, padx=5)
 
-btn_search = tk.Button(btn_frame, text="Search Contact", command=search_contact)
-btn_search.grid(row=0, column=2, padx=5)
+btn_frame3 = tk.Frame(container, bg="#01012B")  
+btn_frame3.pack(side="left", padx=20)
 
-btn_update = tk.Button(btn_frame, text="Update Contact", command=update_contact)
-btn_update.grid(row=0, column=3, padx=5)
+btn_add = tk.Button(btn_frame3, text="Add Contact", fg="white", bg="black", command=add_contact)
+btn_add.grid(row=0, column=1, pady=40, padx=0)
 
-btn_delete = tk.Button(btn_frame, text="Delete Contact", command=delete_contact)
-btn_delete.grid(row=0, column=4, padx=5)
+btn_view = tk.Button(btn_frame1, text="View Contacts", fg="white", bg="black", command=view_contacts)
+btn_view.grid(row=0, column=4, pady=40)
+
+btn_search = tk.Button(btn_frame3, text="Search Contact", fg="white", bg="black", command=search_contact)
+btn_search.grid(row=1, column=1, padx=5)
+
+btn_update = tk.Button(btn_frame1, text="Update Contact", fg="white", bg="black",  command=update_contact)
+btn_update.grid(row=1, column=4, padx=30)
+
+btn_delete = tk.Button(btn_frame1, text="Delete Contact",fg="white", bg="black",  command=delete_contact)
+btn_delete.grid(row=1, column=1) 
+
+label= Label(btn_frame1,bg="#F0E6D8", text= "CONTACT BOOK", border=20, font=("Helvetica", 15, "bold"))
+label.grid(row=0, column=1)
 
 view_contacts()
 root.mainloop()
 
 # ----------------- END -----------------
+
